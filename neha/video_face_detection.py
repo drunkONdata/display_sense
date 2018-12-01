@@ -30,7 +30,7 @@ class VideoDetect:
             face_search, person_tracking, celebrity_recognition, content_moderation
 
         Returns:
-            results: json response returned by AWS SQS queue
+            results: list of json responses returned by AWS SQS queue
         """
 
         jobFound = False
@@ -127,6 +127,7 @@ class VideoDetect:
         maxResults = 500
         paginationToken = ''
         finished = False
+        results = []
 
         while finished == False:
             response = self.rek.get_label_detection(JobId=jobId,
@@ -143,20 +144,23 @@ class VideoDetect:
                 print(labelDetection['Label']['Name'])
                 print(labelDetection['Label']['Confidence'])
                 print(str(labelDetection['Timestamp']))
+                results.append(labelDetection)
 
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
-            return response['Labels']
+
+        return results
 
     # Gets person tracking information using the GetPersonTracking operation.
     # You start person tracking by calling StartPersonTracking
     # jobId is the identifier returned from StartPersonTracking
     def GetResultsPersons(self, jobId):
-        maxResults = 500
+        maxResults = 10
         paginationToken = ''
         finished = False
+        results = []
 
         while finished == False:
             response = self.rek.get_person_tracking(JobId=jobId,
@@ -172,13 +176,14 @@ class VideoDetect:
                 print('Index: ' + str(personDetection['Person']['Index']))
                 print('Timestamp: ' + str(personDetection['Timestamp']))
                 print(personDetection)
+                results.append(personDetection)
 
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
 
-            return response['Persons']
+        return results
 
     # Gets the results of unsafe content label detection by calling
     # GetContentModeration. Analysis is started by a call to StartContentModeration.
@@ -187,6 +192,7 @@ class VideoDetect:
         maxResults = 500
         paginationToken = ''
         finished = False
+        results = []
 
         while finished == False:
             response = self.rek.get_content_moderation(JobId=jobId,
@@ -207,12 +213,14 @@ class VideoDetect:
                     str(contentModerationDetection['ModerationLabel']['ParentName']))
                 print('Timestamp: ' + str(contentModerationDetection['Timestamp']))
                 print()
+                results.append(contentModerationDetection)
 
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
-        return response['ModerationLabels']
+
+        return results
 
     # Gets the results of face detection by calling GetFaceDetection. Face 
     # detection is started by calling StartFaceDetection.
@@ -221,11 +229,13 @@ class VideoDetect:
         maxResults = 500
         paginationToken = ''
         finished = False
+        results = []
 
         while finished == False:
-            response = self.rek.get_face_detection(JobId=jobId,
-                                            MaxResults=maxResults,
-                                            NextToken=paginationToken)
+            response = self.rek.get_face_detection(
+                JobId=jobId,
+                MaxResults=maxResults,
+                NextToken=paginationToken)
 
             print(response['VideoMetadata']['Codec'])
             print(str(response['VideoMetadata']['DurationMillis']))
@@ -237,12 +247,14 @@ class VideoDetect:
                 print('Confidence: ' + str(faceDetection['Face']['Confidence']))
                 print('Timestamp: ' + str(faceDetection['Timestamp']))
                 print()
+                results.append(faceDetection)
 
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
-        return response['Faces']
+
+        return results
 
     # Gets the results of a collection face search by calling GetFaceSearch.
     # The search is started by calling StartFaceSearch.
@@ -250,13 +262,14 @@ class VideoDetect:
     def GetResultsFaceSearchCollection(self, jobId):
         maxResults = 500
         paginationToken = ''
-
         finished = False
+        results = []
 
         while finished == False:
-            response = self.rek.get_face_search(JobId=jobId,
-                                        MaxResults=maxResults,
-                                        NextToken=paginationToken)
+            response = self.rek.get_face_search(
+                JobId=jobId,
+                MaxResults=maxResults,
+                NextToken=paginationToken)
 
             print(response['VideoMetadata']['Codec'])
             print(str(response['VideoMetadata']['DurationMillis']))
@@ -272,13 +285,15 @@ class VideoDetect:
                         print('Face ID: ' + faceMatch['Face']['FaceId'])
                         print('Similarity: ' + str(faceMatch['Similarity']))
                 print()
+                results.append(personMatch)
+
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
             print()
         
-        return response['Persons']
+        return results
 
     # Gets the results of a celebrity detection analysis by calling GetCelebrityRecognition.
     # Celebrity detection is started by calling StartCelebrityRecognition.
@@ -287,6 +302,7 @@ class VideoDetect:
         maxResults = 500
         paginationToken = ''
         finished = False
+        results = []
 
         while finished == False:
             response = self.rek.get_celebrity_recognition(JobId=jobId,
@@ -303,14 +319,17 @@ class VideoDetect:
                     str(celebrityRecognition['Celebrity']['Name']))
                 print('Timestamp: ' + str(celebrityRecognition['Timestamp']))
                 print()
+                results.append(celebrityRecognition)
 
             if 'NextToken' in response:
                 paginationToken = response['NextToken']
             else:
                 finished = True
-        return response['Celebrities']
+
+        return results
 
 
 if __name__ == "__main__":
     analyzer=VideoDetect()
-    analyzer.main(task='face_detection')
+    person_analysis = analyzer.main(task='person_tracking')
+    print(person_analysis)
