@@ -20,31 +20,47 @@ class VideoDetect:
     video = 'bezos_vogels.mp4'
 
     #Entry point. Starts analysis of video in specified bucket.
-    def main(self):
+    def main(self, task):
+        """
+        This function writes a list of time_stamp,images into a video named using
+        the name parameter and the first time stamp in the image list.
+
+        Args:
+            task: Name of the task as a string. Valid choices are label_detection, face_detection,
+            face_search, person_tracking, celebrity_recognition, content_moderation
+
+        Returns:
+            results: json response returned by AWS SQS queue
+        """
 
         jobFound = False
         sqs = boto3.client('sqs')
        
-        # Change active start function for the desired analysis. Also change the GetResults function later in this code.
+        # Changes according to the task chosen by the user.
         #=====================================
-        # response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
-                                        #  NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
+        if task == 'label_detection':
+            response = self.rek.start_label_detection(Video={'S3Object': {'Bucket': self.bucket, 'Name': self.video}},
+                                            NotificationChannel={'RoleArn': self.roleArn, 'SNSTopicArn': self.topicArn})
+        elif task == 'face_detection':
+            response = self.rek.start_face_detection(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+            NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn}, FaceAttributes='ALL') 
 
-        # response = self.rek.start_face_detection(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-        #    NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn}) 
+        elif task == 'face_search':
+            response = self.rek.start_face_search(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+            CollectionId='CollectionId',
+            NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
 
-        #response = self.rek.start_face_search(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-        #    CollectionId='CollectionId',
-        #    NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
+        elif task == 'person_tracking':
+            response = self.rek.start_person_tracking(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+            NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
 
-        response = self.rek.start_person_tracking(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-          NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
+        elif task == 'celebrity_recognition':
+            response = self.rek.start_celebrity_recognition(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+            NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
 
-        #response = self.rek.start_celebrity_recognition(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-        #    NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})
-
-        #response = self.rek.start_content_moderation(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
-        #    NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})        
+        elif task == 'content_moderation':
+            response = self.rek.start_content_moderation(Video={'S3Object':{'Bucket':self.bucket,'Name':self.video}},
+            NotificationChannel={'RoleArn':self.roleArn, 'SNSTopicArn':self.topicArn})        
 
 
         #=====================================
@@ -74,14 +90,20 @@ class VideoDetect:
                     if str(rekMessage['JobId']) == response['JobId']:
                         print('Matching Job Found:' + rekMessage['JobId'])
                         jobFound = True
-                        #Change to match the start function earlier in this code.
+                        #Changes according to the task chosen by user.
                         #=============================================
-                        # self.GetResultsLabels(rekMessage['JobId'])
-                        # self.GetResultsFaces(rekMessage['JobId']) 
-                        #self.GetResultsFaceSearchCollection(rekMessage['JobId']) 
-                        self.GetResultsPersons(rekMessage['JobId']) 
-                        #self.GetResultsCelebrities(rekMessage['JobId']) 
-                        #self.GetResultsModerationLabels(rekMessage['JobId'])                    
+                        if task == 'label_detection':
+                            results = self.GetResultsLabels(rekMessage['JobId'])
+                        elif task == 'face_detection':
+                            results = self.GetResultsFaces(rekMessage['JobId']) 
+                        elif task == 'face_search':
+                            results = self.GetResultsFaceSearchCollection(rekMessage['JobId'])
+                        elif task == 'person_tracking':
+                            results = self.GetResultsPersons(rekMessage['JobId']) 
+                        elif task == 'celebrity_recognition':
+                            results = self.GetResultsCelebrities(rekMessage['JobId']) 
+                        elif task == 'content_moderation':
+                            results = self.GetResultsModerationLabels(rekMessage['JobId'])                    
                                                 
                         #=============================================
 
@@ -95,13 +117,14 @@ class VideoDetect:
                                    ReceiptHandle=message['ReceiptHandle'])
 
         print('done')
+        return results
 
 
     # Gets the results of labels detection by calling GetLabelDetection. Label
     # detection is started by a call to StartLabelDetection.
     # jobId is the identifier returned from StartLabelDetection
     def GetResultsLabels(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
         finished = False
 
@@ -125,12 +148,13 @@ class VideoDetect:
                 paginationToken = response['NextToken']
             else:
                 finished = True
+            return response['Labels']
 
     # Gets person tracking information using the GetPersonTracking operation.
     # You start person tracking by calling StartPersonTracking
     # jobId is the identifier returned from StartPersonTracking
     def GetResultsPersons(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
         finished = False
 
@@ -153,11 +177,14 @@ class VideoDetect:
                 paginationToken = response['NextToken']
             else:
                 finished = True
+
+            return response['Persons']
+
     # Gets the results of unsafe content label detection by calling
     # GetContentModeration. Analysis is started by a call to StartContentModeration.
     # jobId is the identifier returned from StartContentModeration
     def GetResultsModerationLabels(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
         finished = False
 
@@ -185,12 +212,13 @@ class VideoDetect:
                 paginationToken = response['NextToken']
             else:
                 finished = True
+        return response['ModerationLabels']
 
     # Gets the results of face detection by calling GetFaceDetection. Face 
     # detection is started by calling StartFaceDetection.
     # jobId is the identifier returned from StartFaceDetection
     def GetResultsFaces(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
         finished = False
 
@@ -214,12 +242,13 @@ class VideoDetect:
                 paginationToken = response['NextToken']
             else:
                 finished = True
+        return response['Faces']
 
     # Gets the results of a collection face search by calling GetFaceSearch.
     # The search is started by calling StartFaceSearch.
     # jobId is the identifier returned from StartFaceSearch
     def GetResultsFaceSearchCollection(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
 
         finished = False
@@ -248,12 +277,14 @@ class VideoDetect:
             else:
                 finished = True
             print()
+        
+        return response['Persons']
 
     # Gets the results of a celebrity detection analysis by calling GetCelebrityRecognition.
     # Celebrity detection is started by calling StartCelebrityRecognition.
     # jobId is the identifier returned from StartCelebrityRecognition    
     def GetResultsCelebrities(self, jobId):
-        maxResults = 10
+        maxResults = 500
         paginationToken = ''
         finished = False
 
@@ -277,10 +308,9 @@ class VideoDetect:
                 paginationToken = response['NextToken']
             else:
                 finished = True
-
+        return response['Celebrities']
 
 
 if __name__ == "__main__":
-
     analyzer=VideoDetect()
-    analyzer.main()
+    analyzer.main(task='face_detection')

@@ -12,7 +12,7 @@ def write_to_video(name, images):
     Args:
         name: Name of the video as a string.
         images: A list of tuples containing time stamps and
-                images, (time stamp, image).
+                images, (timestamp, image).
 
     Returns:
         None
@@ -70,3 +70,7 @@ def record_webcam(duration, frame_rate):
         sleep(1/frame_rate)
     vs.stop()
     return images
+
+if __name__ == '__main__':
+    images = record_webcam(15, 30)
+    write_to_video('.mp4', images)
