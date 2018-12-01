@@ -1,7 +1,8 @@
-import cv2
 import datetime
 from time import sleep
+import cv2
 from imutils.video import VideoStream
+
 
 def write_to_video(name, images):
     """
@@ -16,14 +17,15 @@ def write_to_video(name, images):
     Returns:
         None
     """
-    time_stamped_name = f'{images[0][0]}{name}'
-    height, width, layers = images[0][1].shape
+    time_name = f'{images[0][0]}{name}'
+    height, width = images[0][1].shape[:2]
     video_fourcc = cv2.VideoWriter_fourcc(*'XVID')
-    video = cv2.VideoWriter(time_stamped_name, video_fourcc, 30, (width,height))
+    video = cv2.VideoWriter(time_name, video_fourcc, 30, (width, height))
     for time_stamp, image in images:
         video.write(image)
     video.release()
     cv2.destroyAllWindows()
+
 
 def write_to_picseries(series_name, images):
     """
@@ -38,10 +40,10 @@ def write_to_picseries(series_name, images):
     Returns:
         None
     """
-    height, width, layers = images[0][1].shape
     for time_stamp, image in images:
-        cv2.imwrite(f'{time_stamp}{series_name}',image)
+        cv2.imwrite(f'{time_stamp}{series_name}', image)
     cv2.destroyAllWindows()
+
 
 def record_webcam(duration, frame_rate):
     """
