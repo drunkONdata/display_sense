@@ -25,7 +25,7 @@ Our solution is:
 * Is easily understandable via a centralized dashboard
 * Can ensemble with other data sources
 
-## Gathering and Cleaning Data
+## Data Pipeline
 
 ### Video Stream Acquisition
 
@@ -38,8 +38,6 @@ Extract demographic & sentiment features from video for analysis using AWS Rekog
 ### DisplaySense Analytics
 
 Display aggregated impressions & data of storefront in a dashboard
-
-## Data
 
 
 ## Modeling
