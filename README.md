@@ -1,7 +1,7 @@
 <p align="center">
 <img src="images/displaysense_logo.png">
 
-# DisplaySense - Delivering storefront intelligence
+# DisplaySense - Delivering Storefront Intelligence
 
 ## Table of Contents:
 1. [Motivation](#motivation)
@@ -82,6 +82,15 @@ Finally, configure an Amazon SQS queue. Amazon SQS moves data between distribute
 5. Enjoy the dashboard! When done, go back to the command line interface and press `ctrl + c` to quit the app.
 
 ## Future Work
+
+* Investigate dlib C++ library for advanced, efficient, and scalable face detection
+* Engage visual merchandiser & designers for a greater understanding of relevant storefront metrics and KPIs 
+* Replace Flask backend with Dash for more-responsive dynamic plots
+* Integrate system with Raspberry Pi 3 or AWS DeepLens 
+* Incorporate AWS Kinesis for easy handling of streaming video
+* Analyze customer sentiment towards specific projects by utilizing head pitch and yaw metrics for gaze tracking
+* Incorporate predictive analytics 
+* Incorporate additional metrics on dashboard
 
 
 ## Tech Stack:
