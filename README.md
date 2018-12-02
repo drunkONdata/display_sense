@@ -35,11 +35,7 @@ Extract demographic & sentiment features from video for analysis using AWS Rekog
 Display aggregated impressions & data of storefront in a dashboard
 
 ## Data Workflow
-
-### Overview:
 ![](https://i.imgur.com/d7tk2dS.png)
-
-### Components:
 
 #### 1. Video Stream
 This can be a live stream from a camera or video recorded previously.
@@ -71,6 +67,7 @@ Displays aggregate results from the analyzed video data.
 
 
 ## Tech Stack:
+<p align="center">
 <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" width="250">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/NumPy_logo.svg" width="250">
 <img src="https://pandas.pydata.org/_static/pandas_logo.png" width="250">
@@ -78,6 +75,8 @@ Displays aggregate results from the analyzed video data.
 <img src="https://camo.githubusercontent.com/630f51296667710aa4dd5959ec5cbc9c03bd48ac/687474703a2f2f7777772e6168612e696f2f6173736574732f6769746875622e37343333363932636162626661313332663334616462303334653739303966612e706e67" width="250">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
 <img src="https://cdn-images-1.medium.com/max/1800/1*5mFQsJUF4FcVAaTJSPI0aA.png" width="250">
+</p>
+
 
 ## References
 
