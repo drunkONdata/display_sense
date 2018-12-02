@@ -58,7 +58,7 @@ class VideoAnalytics:
 
 if __name__ == "__main__":
     videoAnalytics = VideoAnalytics(
-        '/Users/abhishek/Desktop/dvhacks/storefront_analytics/settings.ini',
+        '../settings.ini',
         '1201181734.mp4',
         datetime.utcnow())
     videoAnalytics.CollectResults()
