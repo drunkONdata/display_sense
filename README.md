@@ -69,6 +69,18 @@ Once AWS access has been configured, you're ready to create a topic using Amazon
 
 Finally, configure an Amazon SQS queue. Amazon SQS moves data between distributed application components and helps you decouple these components. Please see the [SQS documentation](https://aws.amazon.com/sqs/getting-started/) for configuring a queue. 
 
+### Connecting to the Dashboard
+
+1. After forking and cloning this repository navigate to the repository and run the command `brew services start mongodb`.
+
+2. Run the command `python rekognition/video_analytics.py`
+
+3. Run `python app.py`
+
+4. Open your browser window and go to the url https://0.0.0.0:8080/
+
+5. Enjoy the dashboard! When done, go back to the command line interface and press `ctrl + c` to quit the app.
+
 ## Future Work
 
 
