@@ -19,7 +19,7 @@ DisplaySense utilizes an ensemble of off-the-shelf hardware, open vision, facial
 * Is easily understandable via a centralized dashboard
 * Can ensemble with other data sources
 
-## Data Workflow & Pipeline:
+## Data Workflow & Pipeline
 
 ### Video Stream Acquisition
 Leverage existing and new hardware at storefronts to record video to be analyzed
@@ -67,7 +67,8 @@ Displays aggregate results to show person and face traffic, gender and age compo
 <img src="https://cdn-images-1.medium.com/max/1600/1*AD9ZSLXKAhZ-_WomszsmPg.png" width="250">
 <img src="https://camo.githubusercontent.com/630f51296667710aa4dd5959ec5cbc9c03bd48ac/687474703a2f2f7777772e6168612e696f2f6173736574732f6769746875622e37343333363932636162626661313332663334616462303334653739303966612e706e67" width="250">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
-<img src="https://cdn-images-1.medium.com/max/1800/1*5mFQsJUF4FcVAaTJSPI0aA.png" width="250">
+<img src="https://cdn-images-1.medium.com/max/1800/1*5mFQsJUF4FcVAaTJSPI0aA.png" width="350">
+<img src="https://en.wikipedia.org/wiki/Plotly#/media/File:Plotly-logo-01-square.png" width="250"> 
 </p>
 
 
