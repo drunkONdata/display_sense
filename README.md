@@ -1,4 +1,4 @@
-# Display Sense - Bringing Digital Analytics to the Storefront
+# DisplaySense - Bringing Digital Analytics to the Storefront
 
 ## Table of Contents
 1. [Motivation](#motivation)
@@ -26,6 +26,18 @@ Our solution is:
 * Can ensemble with other data sources
 
 ## Gathering and Cleaning Data
+
+### Video Stream Acquisition
+
+Leverage existing and new hardware at storefronts to record video to be analyzed
+
+### Deep Learning & Open Vision
+
+Extract demographic & sentiment features from video for analysis using AWS Rekognition
+
+### DisplaySense Analytics
+
+Display aggregated impressions & data of storefront in a dashboard
 
 ## Data
 
