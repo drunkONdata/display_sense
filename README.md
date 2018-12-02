@@ -1,4 +1,4 @@
-# storefront_analytics
+# Display Sense - Bringing digital analytics to the storefront
 
 ## Table of Contents
 1. [Motivation](#motivation)
@@ -13,8 +13,17 @@
 
 ## Motivation
 
+How do retailers determine how successful a storefront is? How do they acquire data to quantify this success?
+
 ## Product
 
+DisplaySense utilizes an ensemble of off-the-shelf hardware, open vision, facial expression sentiment analysis & deep learning techniques to quantify the effectiveness of a store front.  
+
+Our solution is:
+* Easily scalable to multiple stores, displays, aisles & security cameras
+* Sensitive to customer’s privacy
+* Is easily understandable via a centralized dashboard
+* Can ensemble with other data sources
 
 ## Gathering and Cleaning Data
 
@@ -48,7 +57,7 @@
 ## License
 MIT License
 
-Copyright (c) 2018 Kevin Africa
+Copyright (c) 2018 Abhi Banerjee
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
