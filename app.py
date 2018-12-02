@@ -64,7 +64,7 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(VideoCamera('beach_walk.mp4')), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(VideoCamera('beach_walk.avi')), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def create_figure():
     fig = Figure()
