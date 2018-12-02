@@ -12,6 +12,7 @@ import pandas as pd
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import random
+import skvideo.io
 
 app = Flask(__name__)
 
@@ -63,7 +64,7 @@ def gen(camera):
 
 @app.route('/video_feed')
 def video_feed():
-    return Response(gen(VideoCamera()), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(VideoCamera('beach_walk.mp4')), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def create_figure():
     fig = Figure()
