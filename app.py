@@ -162,7 +162,7 @@ def gen(camera):
 
 @app.route('/video_feed', methods=['GET', 'POST'])
 def video_feed():
-    return Response(gen(VideoCamera('./small2.mp4')), mimetype='multipart/x-mixed-replace; boundary=frame')
+    return Response(gen(VideoCamera('sample_videos/sample_1.mp4')), mimetype='multipart/x-mixed-replace; boundary=frame')
 
 def create_figure():
     fig = Figure()
@@ -217,10 +217,6 @@ def plot():
     #FigureCanvas(fig).print_png(output)
     temp = dynamic_graph()
     return Response(temp, mimetype='multipart/x-mixed-replace; boundary=frame')
-
-
-
-
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080, debug=True)
