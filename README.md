@@ -3,13 +3,11 @@
 ## Table of Contents:
 1. [Motivation](#motivation)
 2. [Product](#product)
-3. [Data Workflow & Pipeline](#Data-Workflow-&-Pipeline)
-4. [Data Preparation](#data-preparation)
-5. [Modeling](#modeling)
-6. [Usage](#usage)
-7. [Future Work](#future-work)
-8. [References](#references)
-9. [License](https://github.com/drunkONdata/storefront_analytics/blob/master/LICENSE)
+3. [Data Workflow & Pipeline](#data-workflow-&-pipeline)
+4. [Usage](#usage)
+5. [Future Work](#future-work)
+6. [References](#references)
+7. [License](https://github.com/drunkONdata/storefront_analytics/blob/master/LICENSE)
 
 ## Motivation:
 How do retailers determine how successful a storefront is? How do they acquire data to quantify this success? 
@@ -51,8 +49,6 @@ First-in, first-out queue that allows us to retrieve the results of completed jo
 
 #### 6. Dashboard
 Displays aggregate results from the analyzed video data
-
-## Modeling
 
 
 
