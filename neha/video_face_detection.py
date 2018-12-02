@@ -74,7 +74,7 @@ class VideoDetect:
         dotLine = 0
         while jobFound is False:
             sqsResponse = sqs.receive_message(
-                queue=self.queue,
+                QueueUrl=self.queue,
                 MessageAttributeNames=['ALL'],
                 MaxNumberOfMessages=10)
 
@@ -122,7 +122,7 @@ class VideoDetect:
                         # =============================================
 
                         sqs.delete_message(
-                            queue=self.queue,
+                            QueueUrl=self.queue,
                             ReceiptHandle=message['ReceiptHandle'])
                     else:
                         print("Job didn't match:" +
@@ -132,7 +132,7 @@ class VideoDetect:
 
                     # Delete the unknown message
                     sqs.delete_message(
-                        queue=self.queue,
+                        QueueUrl=self.queue,
                         ReceiptHandle=message['ReceiptHandle'])
 
         print('done')

@@ -18,18 +18,13 @@ for personDetection in person_analysis_results:
 
         personsWithFaces[index][timestamp] = personDetection['Person']['Face']
 
-        print('Index: ' + str(personDetection['Person']['Index']))
-        print('Timestamp: ' + str(personDetection['Timestamp']))
-        print()
-
 for faceDetection in face_analysis_results:
     for index, face_timestamp_dict in personsWithFaces.items():
         face_timestamp = faceDetection['Timestamp']
         face_bounding_box = faceDetection['Face']['BoundingBox']
-        person_bounding_box = face_timestamp_dict[timestamp]['BoundingBox']
 
         if (timestamp in face_timestamp_dict and
-                face_bounding_box['Left'] == person_bounding_box['Left']):
+                face_bounding_box['Left'] == face_timestamp_dict[timestamp]['BoundingBox']['Left']):
             personsWithFaces[index][timestamp] = faceDetection['Face']
 
 print(json.dumps(personsWithFaces))
