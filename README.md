@@ -60,13 +60,14 @@ Anaconda is the recommended solution for installing and managing the packages ne
 The `requirements.txt` file lists all Python libraries necessary for utilizing DisplaySense, and they will be installed using the following commands:
 
 `pip install -r requirements.txt`
+
 `conda install -r requirements.txt`
 
 AWS Identity and Access Management (IAM) must be configured to manage access to AWS services and resources securely. Please see Amazon's [getting set up](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html) documentation. 
 
-Once AWS access has been established the AWS SNS and AWS SQS steps of the data pipeline can be configured as well.
+Once AWS access has been configured, you're ready to create a topic using Amazon SNS. A topic is a communication channel to send messages and subscribe to notifications. It provides an access point for publishers and subscribers to communicate with each other. Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) for configuring an SNS Topic.
 
-Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) for configuring an SNS Topic and the [SQS documentation](https://aws.amazon.com/sqs/getting-started/) for configuring a queue. 
+Finally, configure an Amazon SQS queue. Amazon SQS moves data between distributed application components and helps you decouple these components. Please see the [SQS documentation](https://aws.amazon.com/sqs/getting-started/) for configuring a queue. 
 
 ## Future Work
 
@@ -91,10 +92,11 @@ Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) 
 
 ## References
 https://docs.aws.amazon.com/rekognition/#lang/en_us
+
 https://opencv-python-tutroals.readthedocs.io/en/latest/py_tutorials/py_tutorials.html
+
 https://people.eecs.berkeley.edu/~jordan/sail/readings/rubin.pdf
+
 http://flask.pocoo.org/docs/1.0/
+
 https://plot.ly/python/#fundamentals
-
-
-
