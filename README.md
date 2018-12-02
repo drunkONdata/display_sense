@@ -70,7 +70,7 @@ The `requirements.txt` file lists all Python libraries necessary for utilizing D
 <img src="https://cdn-images-1.medium.com/max/1600/1*AD9ZSLXKAhZ-_WomszsmPg.png" width="250">
 <img src="https://camo.githubusercontent.com/630f51296667710aa4dd5959ec5cbc9c03bd48ac/687474703a2f2f7777772e6168612e696f2f6173736574732f6769746875622e37343333363932636162626661313332663334616462303334653739303966612e706e67" width="250">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
-<img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="250">
+<img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="100">
 <img src="https://blog.f1000.com/wp-content/uploads/2017/07/logo.png" width="250"> 
 </p>
 
