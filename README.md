@@ -1,3 +1,5 @@
+<p align="center">
+<img src="images/displaysense_logo.png">
 # DisplaySense - Delivering storefront intelligence
 
 ## Table of Contents:
