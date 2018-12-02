@@ -4,7 +4,7 @@
 1. [Motivation](#motivation)
 2. [Product](#product)
 3. [Data Workflow & Pipeline](#data-workflow-&-pipeline)
-4. [Usage](#usage)
+4. [Deployment](#deployment)
 5. [Future Work](#future-work)
 6. [References](#references)
 7. [License](https://github.com/drunkONdata/storefront_analytics/blob/master/LICENSE)
@@ -50,11 +50,14 @@ First-in, first-out Amazon Simple Queue Service (Amazon SQS) queue to get the co
 #### 6. Dashboard
 Displays aggregate results to show person and face traffic, gender and age composition, general mood from the analyzed video data(json object sent back by SQS queue).
 
+## Deployment
 
+Anaconda is the recommended solution for installing and managing the scientific Python packages necessary for DisplaySense analytics. Please see the Anaconda [installation instructions](http://docs.anaconda.com/anaconda/install/).  
 
-## Usage
+The `requirements.txt` file lists all Python libraries necessary for utilizing DisplaySense, and they will be installed using the following commands:
 
-
+`pip install -r requirements.txt`
+`conda install -r requirements.txt`
 
 ## Future Work
 
