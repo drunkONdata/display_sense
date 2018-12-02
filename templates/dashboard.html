@@ -6,11 +6,10 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
 
     <title>Storefront Aanlytics</title>
-	  <link rel="icon" href="{{ url_for('static', filename='img/store.png') }}">
+    <link rel="icon" href="{{ url_for('static', filename='img/store.png') }}">
 
     <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
     <meta name="viewport" content="width=device-width" />
-
 
     <!-- Bootstrap core CSS    -->
     <link href="{{ url_for('static', filename='css/bootstrap.min.css') }}" rel="stylesheet" />
@@ -20,11 +19,6 @@
 
     <!--  Paper Dashboard core CSS    -->
     <link href="{{ url_for('static', filename='css/paper-dashboard.css') }}" rel="stylesheet" />
-
-
-    <!--  CSS for Demo Purpose, don't include it in your project     -->
-    <link href="{{ url_for('static', filename='css/demo.css') }}" rel="stylesheet" />
-
 
     <!--  Fonts and icons     -->
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
@@ -136,108 +130,108 @@
             <div class="content">
                 <div class="container-fluid">
 
-                        <div class="row">
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card">
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <div class="icon-big icon-warning text-center">
-                                                        <i class="ti-vector"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="numbers" id="foot-traffic">
-                                                        <p>Foot traffic</p>
-                                                        {{foot_traffic}}
-                                                    </div>
-                                                </div>
+                    <div class="row">
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-warning text-center">
+                                                <i class="ti-vector"></i>
                                             </div>
-                                            <div class="footer">
-                                                <hr />
-                                                <div class="stats">
-                                                    <i class="ti-calendar"></i> Last day
-                                                </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <div class="numbers" id="foot-traffic">
+                                                <p>Foot traffic</p>
+                                                {{foot_traffic}}
                                             </div>
                                         </div>
                                     </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card">
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <div class="icon-big icon-success text-center">
-                                                        <i class="ti-eye"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="numbers" id="head_turns">
-                                                        <p>Head Turns</p>
-                                                        {{head_turns}}
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer">
-                                                <hr />
-                                                <div class="stats">
-                                                    <i class="ti-calendar"></i> Last day
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card">
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <div class="icon-big icon-danger text-center">
-                                                        <i class="ti-heart"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="numbers">
-                                                        <p>General Sentiment</p>
-                                                        Happy
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer">
-                                                <hr />
-                                                <div class="stats">
-                                                    <i class="ti-calendar"></i> Last day
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div class="col-lg-3 col-sm-6">
-                                    <div class="card">
-                                        <div class="content">
-                                            <div class="row">
-                                                <div class="col-xs-5">
-                                                    <div class="icon-big icon-info text-center">
-                                                        <i class="ti-timer"></i>
-                                                    </div>
-                                                </div>
-                                                <div class="col-xs-7">
-                                                    <div class="numbers">
-                                                        <p>Average Stay Time</p>
-                                                        45 Seconds
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="footer">
-                                                <hr />
-                                                <div class="stats">
-                                                    <i class="ti-calendar"></i> Last day
-                                                </div>
-                                            </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="ti-calendar"></i> Last day
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-success text-center">
+                                                <i class="ti-eye"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <div class="numbers" id="head_turns">
+                                                <p>Head Turns</p>
+                                                {{head_turns}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="ti-calendar"></i> Last day
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-danger text-center">
+                                                <i class="ti-heart"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <div class="numbers">
+                                                <p>General Sentiment</p>
+                                                Happy
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="ti-calendar"></i> Last day
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-lg-3 col-sm-6">
+                            <div class="card">
+                                <div class="content">
+                                    <div class="row">
+                                        <div class="col-xs-5">
+                                            <div class="icon-big icon-info text-center">
+                                                <i class="ti-timer"></i>
+                                            </div>
+                                        </div>
+                                        <div class="col-xs-7">
+                                            <div class="numbers">
+                                                <p>Average Stay Time</p>
+                                                45 Seconds
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="footer">
+                                        <hr />
+                                        <div class="stats">
+                                            <i class="ti-calendar"></i> Last day
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <div class="row">
@@ -259,7 +253,7 @@
                                     <p class="category"></p>
                                 </div>
                                 <div class="content">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -273,7 +267,7 @@
                                     <p class="category">Last Campaign Performance</p>
                                 </div>
                                 <div class="content">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -284,7 +278,7 @@
                                     <p class="category"></p>
                                 </div>
                                 <div class="content">
-                                    
+
                                 </div>
                             </div>
                         </div>
@@ -292,18 +286,18 @@
 
                     <div class="row">
 
-                            <div class="col-md-12">
-                                <div class="card">
-                                    <div class="header">
-                                        <h4 class="title">Users Behavior</h4>
-                                        <p class="category">24 Hours performance</p>
-                                    </div>
-                                    <div class="content">
-                                        {% include 'topic-plot.html' %}
-                                    </div>
+                        <div class="col-md-12">
+                            <div class="card">
+                                <div class="header">
+                                    <h4 class="title">Users Behavior</h4>
+                                    <p class="category">24 Hours performance</p>
+                                </div>
+                                <div class="content">
+                                    {% include 'topic-plot.html' %}
                                 </div>
                             </div>
                         </div>
+                    </div>
 
 
                 </div>
@@ -321,7 +315,6 @@
             <div class="container-fluid">
                 <nav class="pull-left">
                     <ul>
-
                         <li>
                             <a href="#">
                                 Home
