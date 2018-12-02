@@ -12,7 +12,6 @@ import pandas as pd
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import random
-import skvideo.io
 
 app = Flask(__name__)
 
