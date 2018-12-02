@@ -24,15 +24,12 @@ for personDetection in person_analysis_results:
 
 for faceDetection in face_analysis_results:
     for index, face_timestamp_dict in personsWithFaces.items():
-        timestamp = faceDetection['Timestamp']
-        face_bounding_box_left = faceDetection['Face']['BoundingBox']['Left']
+        face_timestamp = faceDetection['Timestamp']
+        face_bounding_box = faceDetection['Face']['BoundingBox']
+        person_bounding_box = face_timestamp_dict[timestamp]['BoundingBox']
 
-        if timestamp in face_timestamp_dict and face_bounding_box_left == face_timestamp_dict[timestamp]['BoundingBox']['Left']:
+        if (timestamp in face_timestamp_dict and
+                face_bounding_box['Left'] == person_bounding_box['Left']):
             personsWithFaces[index][timestamp] = faceDetection['Face']
 
 print(json.dumps(personsWithFaces))
-
-
-        
-
-
