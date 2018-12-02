@@ -3,7 +3,7 @@
 ## Table of Contents:
 1. [Motivation](#motivation)
 2. [Product](#product)
-3. [Data Workflow & Pipeline](#data-workflow-&-pipeline)
+3. [Data Workflow and Pipeline](#data-workflow-and-pipeline)
 4. [Deployment](#deployment)
 5. [Future Work](#future-work)
 6. [References](#references)
@@ -19,7 +19,7 @@ DisplaySense utilizes an ensemble of off-the-shelf hardware, open vision, facial
 * Is easily understandable via a centralized dashboard
 * Can ensemble with other data sources
 
-## Data Workflow & Pipeline
+## Data Workflow and Pipeline
 
 ### Video Stream Acquisition
 Leverage existing and new hardware at storefronts to record video to be analyzed
@@ -52,12 +52,18 @@ Displays aggregate results to show person and face traffic, gender and age compo
 
 ## Deployment
 
-Anaconda is the recommended solution for installing and managing the scientific Python packages necessary for DisplaySense analytics. Please see the Anaconda [installation instructions](http://docs.anaconda.com/anaconda/install/).  
+Anaconda is the recommended solution for installing and managing the packages necessary for DisplaySense analytics. Please see the Anaconda [installation instructions](http://docs.anaconda.com/anaconda/install/).  
 
 The `requirements.txt` file lists all Python libraries necessary for utilizing DisplaySense, and they will be installed using the following commands:
 
 `pip install -r requirements.txt`
 `conda install -r requirements.txt`
+
+AWS Identity and Access Management (IAM) must be configured to manage access to AWS services and resources securely. Please see Amazon's [getting set up](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html) documentation. 
+
+Once AWS access has been established the AWS SNS and AWS SQS steps of the data pipeline can be configured as well.
+
+Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) for configuring an SNS Topic and the [SQS documentation](https://aws.amazon.com/sqs/getting-started/) for configuring a queue. 
 
 ## Future Work
 
