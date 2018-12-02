@@ -41,11 +41,11 @@ The video is pushed to an S3 bucket in order to easily interact with other AWS s
 #### 3. AWS Rekognition
 The stored video is then analyzed to detect persons, faces, gender, age, sentiments, facial features such as beard, mustache, eyeglasses etc.
 
-#### 4. AWS SNS
-Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service (Amazon SNS) topic. If the video analysis is successful, you can get the results of the video analysis.
+#### 4. AWS Simple Notification Service (SNS)
+Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon SNS topic. If the video analysis is successful, you can get the results of the video analysis.
 
-#### 5. AWS SQS
-First-in, first-out Amazon Simple Queue Service (Amazon SQS) queue to get the completion status of the video analysis request. The response sent back by the SQS queue is a json object.
+#### 5. AWS Simple Queue Service (SQS)
+First-in, first-out Amazon SQS queue to get the completion status of the video analysis request. The response sent back by the SQS queue is a json object.
 
 #### 6. Dashboard
 Displays aggregate results to show person and face traffic, gender and age composition, general mood from the analyzed video data(json object sent back by SQS queue).
@@ -71,11 +71,17 @@ Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) 
 ## Tech Stack:
 <p align="center">
 <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" width="250">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/NumPy_logo.svg" width="250">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="https://pandas.pydata.org/_static/pandas_logo.png" width="250">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="https://cdn-images-1.medium.com/max/1600/1*AD9ZSLXKAhZ-_WomszsmPg.png" width="250">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="125">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
+<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
 <img src="https://blog.f1000.com/wp-content/uploads/2017/07/logo.png" width="250"> 
 </p>
 
