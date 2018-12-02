@@ -39,6 +39,37 @@ Extract demographic & sentiment features from video for analysis using AWS Rekog
 
 Display aggregated impressions & data of storefront in a dashboard
 
+## Data Workflow
+
+### Overview 
+
+![](https://i.imgur.com/d7tk2dS.png)
+
+### Components
+
+#### 1. Video Stream
+
+This can be a live stream from a camera or video recorded previously.
+
+#### 2. AWS S3 Bucket
+
+The video is pushed to an S3 bucket in order to easily interact with other AWS services in the next steps.
+
+#### 3. AWS Rekognition
+
+Video is analyzed for information on human faces that have been detected in the video.
+
+#### 4. AWS SNS
+
+Once Rekognition has completed a job SNS notifies and pushes the result to a queue. 
+
+#### 5. AWS SQS
+
+First-in, first-out queue that allows us to retrieve the results of completed jobs.
+
+#### 6. Dashboard
+
+Displays aggregate results from the analyzed video data. 
 
 ## Modeling
 
