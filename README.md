@@ -61,7 +61,7 @@ The `requirements.txt` file lists all Python libraries necessary for utilizing D
 
 `pip install -r requirements.txt`
 
-`conda install -r requirements.txt`
+`conda install --file conda_requirements.txt`
 
 AWS Identity and Access Management (IAM) must be configured to manage access to AWS services and resources securely. Please see Amazon's [getting set up](https://docs.aws.amazon.com/IAM/latest/UserGuide/getting-set-up.html) documentation. 
 
