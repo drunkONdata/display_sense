@@ -7,13 +7,14 @@ import sys
 
 class VideoDetect:
 
-    jobId = ''
-    rek = boto3.client('rekognition')
-    queue = 'https://sqs.us-west-2.amazonaws.com/302497794745/Reko_std_queue'
-    roleArn = 'arn:aws:iam::302497794745:role/Rekognition_SNS'
-    topicArn = 'arn:aws:sns:us-west-2:302497794745:Rekognition_topic'
-    bucket = 'storefront-analytics'
-    video = '1201181734.mp4'
+    def __init__(self, queue, roleArn, topicArn, bucket, video):
+        self.queue = queue
+        self.roleArn = roleArn
+        self.topicArn = topicArn
+        self.bucket = bucket
+        self.video = video
+        self.jobId = ''
+        self.rek = boto3.client('rekognition')
 
     # Entry point. Starts analysis of video in specified bucket.
     def main(self, task):
@@ -298,3 +299,5 @@ if __name__ == "__main__":
     analyzer = VideoDetect()
     person_analysis = analyzer.main(task='person_tracking')
     print(person_analysis)
+
+timestamp_face_count_dict, timestamp_person_count_dict, timestamp_male_count_dict, timestamp_female_count_dict, timestamp_youth_count_dict timestamp_adult_count_dict, timestamp_seniors_count_dict, timestamp_happy_count_dict, timestamp_calm_count_dict, timestamp_disgusted_count_dict, timestamp_confused_count_dict, timestamp_surprised_count_dict, timestamp_sad_count_dict, timestamp_angry_count_dict = [defaultdict(int)] * 14
