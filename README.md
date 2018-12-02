@@ -1,5 +1,5 @@
 <p align="center">
-<img src="images/displaysense_logo.png">
+<img src="images/large_logo.png">
 
 # DisplaySense - Delivering Storefront Intelligence
 
