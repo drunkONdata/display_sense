@@ -241,7 +241,10 @@
                                     <p class="category">Storefront Display 1</p>
                                 </div>
                                 <div class="content">
-                                    <img src="{{ url_for('video_feed') }}">
+                                    <video id="sample_video" controls>
+                                        <source src="{{ url_for('static', filename='sample_videos/sample_2.mp4') }}" type="video/mp4">
+                                        Your browser does not support HTML5 video.
+                                    </video>
                                 </div>
                             </div>
                         </div>
