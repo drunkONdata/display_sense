@@ -1,5 +1,5 @@
 from flask import Flask
-from flask import Response, render_template, send_file, jsonify
+from flask import Response, render_template, send_file, jsonify, abort, request
 import numpy as np
 import cv2
 from skimage.io import imsave
@@ -12,12 +12,52 @@ import pandas as pd
 from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 from matplotlib.figure import Figure
 import random
+from pymongo import MongoClient
+from datetime import datetime, date, time, timedelta
 
 app = Flask(__name__)
+mongoClient = MongoClient('mongodb://localhost:27017/')
+storeName = 'TestStore'
+storeLocation = 'Bellevue_98004'
+storeDatabase = mongoClient[storeName]
+storeCollection = storeDatabase[storeLocation]
+
+
+@app.route('/head_turns_last_day')
+def head_turns_last_day():
+    results = storeCollection.find()
+    timestampHourBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
+    faces = set()
+
+    for result in results:
+        timestamp = result['Timestamp']
+        if timestamp > timestampHourBack:
+            if 'Face' in result['Person']:
+                faces.add(result['Person']['Index'])
+
+    return str(len(faces))
+
+
+@app.route('/foot_traffic_last_day')
+def foot_traffic_last_day():
+    results = storeCollection.find()
+    timestampHourBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
+    persons = set()
+
+    for result in results:
+        timestamp = result['Timestamp']
+        if timestamp > timestampHourBack:
+            persons.add(result['Person']['Index'])
+
+    return str(len(persons))
+
 
 @app.route('/')
 def index():
-    return render_template('dashboard.html')
+    return render_template(
+        'dashboard.html',
+        foot_traffic=int(foot_traffic_last_day()),
+        head_turns=head_turns_last_day())
 
 @app.route('/dashboard')
 def dashboard():
@@ -81,9 +121,9 @@ def mk_graphs(df):
     return fig
 
 def update_graph_helper(df):
- 
+
     fig, ax = plt.subplots()
-    
+
     ax.hist(df['number of people'])
 
     output = io.BytesIO()
