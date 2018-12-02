@@ -3,13 +3,11 @@
 ## Table of Contents:
 1. [Motivation](#motivation)
 2. [Product](#product)
-3. [Data Workflow & Pipeline](#Data-Workflow-&-Pipeline)
-4. [Data Preparation](#data-preparation)
-5. [Modeling](#modeling)
-6. [Usage](#usage)
-7. [Future Work](#future-work)
-8. [References](#references)
-9. [License](#license)
+3. [Data Workflow & Pipeline](#data-workflow-&-pipeline)
+4. [Usage](#usage)
+5. [Future Work](#future-work)
+6. [References](#references)
+7. [License](https://github.com/drunkONdata/storefront_analytics/blob/master/LICENSE)
 
 ## Motivation:
 How do retailers determine how successful a storefront is? How do they acquire data to quantify this success? 
@@ -52,8 +50,6 @@ First-in, first-out Amazon Simple Queue Service (Amazon SQS) queue to get the co
 #### 6. Dashboard
 Displays aggregate results to show person and face traffic, gender and age composition, general mood from the analyzed video data(json object sent back by SQS queue).
 
-## Modeling
-
 
 
 ## Usage
@@ -78,24 +74,3 @@ Displays aggregate results to show person and face traffic, gender and age compo
 ## References
 https://docs.aws.amazon.com/rekognition/#lang/en_us
 
-## License
-MIT License
-
-Copyright (c) 2018 Abhi Banerjee
-
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
-
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
-
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
