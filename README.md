@@ -1,3 +1,6 @@
+<p align="center">
+<img src="images/displaysense_logo.png">
+
 # DisplaySense - Delivering storefront intelligence
 
 ## Table of Contents:
@@ -71,17 +74,17 @@ Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) 
 ## Tech Stack:
 <p align="center">
 <img src="https://www.python.org/static/community_logos/python-logo-master-v3-TM.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://upload.wikimedia.org/wikipedia/commons/1/1a/NumPy_logo.svg" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://pandas.pydata.org/_static/pandas_logo.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://cdn-images-1.medium.com/max/1600/1*AD9ZSLXKAhZ-_WomszsmPg.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="125">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://blog.f1000.com/wp-content/uploads/2017/07/logo.png" width="250"> 
 </p>
 
