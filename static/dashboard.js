@@ -53,9 +53,8 @@ function draw_dashboards(data) {
     var male_head_turns_data = {
         x: $.map(male_head_turns, function(value, key) { return now - parseInt(key) }),
         y: $.map(male_head_turns, function(value, key) { return value }),
-        fill: 'tozeroy',
         type: 'scatter',
-        mode: 'none',
+        mode: 'markers',
         name: 'Male'
     };
 
@@ -63,9 +62,8 @@ function draw_dashboards(data) {
     var female_head_turns_data = {
         x: $.map(female_head_turns, function(value, key) { return now - parseInt(key) }),
         y: $.map(female_head_turns, function(value, key) { return value }),
-        fill: 'tonexty',
         type: 'scatter',
-        mode: 'none',
+        mode: 'markers',
         name: 'Female'
     };
 
@@ -81,9 +79,7 @@ function draw_dashboards(data) {
     var youth_head_turns_data = {
         x: $.map(youth_head_turns, function(value, key) { return now - parseInt(key) }),
         y: $.map(youth_head_turns, function(value, key) { return value }),
-        fill: 'tozeroy',
-        type: 'scatter',
-        mode: 'none',
+        mode: 'markers',
         name: 'Youth'
     };
 
@@ -91,9 +87,7 @@ function draw_dashboards(data) {
     var adult_head_turns_data = {
         x: $.map(adult_head_turns, function(value, key) { return now - parseInt(key) }),
         y: $.map(adult_head_turns, function(value, key) { return value }),
-        fill: 'tozeroy',
-        type: 'scatter',
-        mode: 'none',
+        mode: 'markers',
         name: 'Adult'
     };
 
@@ -101,9 +95,7 @@ function draw_dashboards(data) {
     var seniors_head_turns_data = {
         x: $.map(seniors_head_turns, function(value, key) { return now - parseInt(key) }),
         y: $.map(seniors_head_turns, function(value, key) { return value }),
-        fill: 'tozeroy',
-        type: 'scatter',
-        mode: 'none',
+        mode: 'markers',
         name: 'Seniors'
     };
 
