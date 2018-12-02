@@ -77,11 +77,11 @@ Please see the [SNS documentation](https://aws.amazon.com/sns/getting-started/) 
 <img src="https://pandas.pydata.org/_static/pandas_logo.png" width="250">
 <img src="images/spacer.png">
 <img src="https://cdn-images-1.medium.com/max/1600/1*AD9ZSLXKAhZ-_WomszsmPg.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://upload.wikimedia.org/wikipedia/commons/3/32/OpenCV_Logo_with_text_svg_version.svg" width="125">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="http://flask.pocoo.org/static/logo/flask.png" width="250">
-<img src="https://drive.google.com/file/d/1MqSwIWmYbvMAy1ZA3j0Q4Io6By0BTeG6/view?usp=sharing">
+<img src="images/spacer.png">
 <img src="https://blog.f1000.com/wp-content/uploads/2017/07/logo.png" width="250"> 
 </p>
 
