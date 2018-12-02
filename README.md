@@ -35,22 +35,22 @@ Display aggregated impressions & data of storefront in a dashboard
 ![](https://i.imgur.com/d7tk2dS.png)
 
 #### 1. Video Stream
-This can be a live stream from a camera or video recorded previously
+This can be a live stream from a camera or video recorded previously.
 
 #### 2. AWS S3 Bucket
-The video is pushed to an S3 bucket in order to easily interact with other AWS services in the next steps
+The video is pushed to an S3 bucket in order to easily interact with other AWS services in the next steps.
 
 #### 3. AWS Rekognition
-Video is analyzed for information on human faces that have been detected in the video
+The stored video is then analyzed to detect persons, faces, gender, age, sentiments, facial features such as beard, mustache, eyeglasses etc.
 
 #### 4. AWS SNS
-Once Rekognition has completed a job SNS notifies and pushes the result to a queue
+Amazon Rekognition Video publishes the completion status of the video analysis to an Amazon Simple Notification Service (Amazon SNS) topic. If the video analysis is successful, you can get the results of the video analysis.
 
 #### 5. AWS SQS
-First-in, first-out queue that allows us to retrieve the results of completed jobs
+First-in, first-out Amazon Simple Queue Service (Amazon SQS) queue to get the completion status of the video analysis request. The response sent back by the SQS queue is a json object.
 
 #### 6. Dashboard
-Displays aggregate results from the analyzed video data
+Displays aggregate results to show person and face traffic, gender and age composition, general mood from the analyzed video data(json object sent back by SQS queue).
 
 ## Modeling
 
@@ -76,7 +76,7 @@ Displays aggregate results from the analyzed video data
 
 
 ## References
-
+https://docs.aws.amazon.com/rekognition/#lang/en_us
 
 ## License
 MIT License
