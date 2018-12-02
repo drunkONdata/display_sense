@@ -13,7 +13,7 @@ class VideoDetect:
     roleArn = 'arn:aws:iam::302497794745:role/Rekognition_SNS'
     topicArn = 'arn:aws:sns:us-west-2:302497794745:Rekognition_topic'
     bucket = 'storefront-analytics'
-    video = 'bezos_vogels.mp4'
+    video = '1201181734.mp4'
 
     # Entry point. Starts analysis of video in specified bucket.
     def main(self, task):
