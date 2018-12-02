@@ -4,7 +4,7 @@ import plotly.graph_objs as go
 import plotly.io as pio
 
 def get_pdf(x_range, store_data):
-    ''' The function will return the pdf for a given beta distribution.
+    """ The function will return the pdf for a given beta distribution.
     
     Args:
         x_range: Array of x values for the plot.
@@ -13,7 +13,7 @@ def get_pdf(x_range, store_data):
                     
     Returns:
         A numpy array representing the PDF for the given beta distribution.
-    '''
+    """
     alpha = sum(store_data)
     beta = len(store_data) - alpha
     return stats.beta(a=alpha, b=beta).pdf(x_range)
@@ -90,3 +90,17 @@ def generate_plotly_frames(data_store_a, data_store_b, n_customers):
         frames.append(fig)
         
     return frames
+
+def export_frame_images(frames, base_fig_name):
+    """ The function will return a list of figures for Plotly to animate.
+    
+    Args:
+        frames: A list of Plotly figures
+        base_fig_name: The base name that you want the output files saved as. If the base name is  "flagshipStore" then 
+                       the files will be output as flagshipStore0.png, flagshipStore1.png, etc. 
+                    
+    Returns:
+        This function exports a sequence of PNG files that can then be used to turn into a gif. 
+    """
+    for i, frame in enumerate(frames):
+        pio.write_image(frame, base_fig_name + str(i) + '.png')
