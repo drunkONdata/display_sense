@@ -3,3 +3,4 @@ static/fonts/* linguist-vendored
 static/img/* linguist-vendored
 static/js/* linguist-vendored
 static/scss/* linguist-vendored
+templates/* linguist-vendored
