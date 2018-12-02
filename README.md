@@ -13,7 +13,7 @@
 7. [License](https://github.com/drunkONdata/storefront_analytics/blob/master/LICENSE)
 
 ## Motivation:
-How do retailers determine how successful a storefront is? How do they acquire data to quantify this success? 
+Digital retailers can easily capture data to quantify and analyze how users are interacting with their products online. How can traditional brick-and-mortar retailers capture similar analytics in order to remain competitive in the ever-changing retail field? With new technologies, traditional retailers can now gather and analyze information about how potential customers are interacting with their storefronts.
 
 ## Product:
 DisplaySense utilizes an ensemble of off-the-shelf hardware, open vision, facial expression sentiment analysis & deep learning techniques to quantify the effectiveness of a store front. Our solution is:

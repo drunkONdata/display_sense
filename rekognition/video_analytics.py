@@ -6,9 +6,9 @@ from datetime import datetime, date, time
 
 class VideoAnalytics:
 
-    def __init__(self, configPath, video, videoStartTimeInUtc):
+    def __init__(self, configPath, video, videoStartTime):
         self.video = video
-        self.videoStartTimeInUtc = videoStartTimeInUtc
+        self.videoStartTime = videoStartTime
         config = configparser.ConfigParser()
         config.read(configPath)
         configDefaultSection = config['DEFAULT']
@@ -53,13 +53,13 @@ class VideoAnalytics:
 
     def AddResultsToDatabase(self):
         for result in self.results:
-            result['Timestamp'] = self.videoStartTimeInUtc.timestamp() * 1000 + int(result['Timestamp'])
+            result['Timestamp'] = int(self.videoStartTime.timestamp() * 1000) + int(result['Timestamp'])
             self.storeCollection.insert_one(result)
 
 if __name__ == "__main__":
     videoAnalytics = VideoAnalytics(
         '../settings.ini',
         '1201181734.mp4',
-        datetime.utcnow())
+        datetime.now())
     videoAnalytics.CollectResults()
     videoAnalytics.AddResultsToDatabase()

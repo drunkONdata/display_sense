@@ -84,7 +84,7 @@ class VideoDetect:
                 if 'Messages' not in sqsResponse:
                     if dotLine < 20:
                         print('.', end='')
-                        dotLine = dotLine+1
+                        dotLine = dotLine + 1
                     else:
                         print()
                         dotLine = 0
@@ -293,11 +293,3 @@ class VideoDetect:
                 finished = True
 
         return results
-
-
-if __name__ == "__main__":
-    analyzer = VideoDetect()
-    person_analysis = analyzer.main(task='person_tracking')
-    print(person_analysis)
-
-timestamp_face_count_dict, timestamp_person_count_dict, timestamp_male_count_dict, timestamp_female_count_dict, timestamp_youth_count_dict timestamp_adult_count_dict, timestamp_seniors_count_dict, timestamp_happy_count_dict, timestamp_calm_count_dict, timestamp_disgusted_count_dict, timestamp_confused_count_dict, timestamp_surprised_count_dict, timestamp_sad_count_dict, timestamp_angry_count_dict = [defaultdict(int)] * 14
