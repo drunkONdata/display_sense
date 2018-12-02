@@ -15,6 +15,7 @@ from pymongo import MongoClient
 import time
 from datetime import datetime, date, time, timedelta
 from collections import defaultdict
+import json
 
 app = Flask(__name__)
 mongoClient = MongoClient('mongodb://localhost:27017/')
@@ -27,12 +28,12 @@ storeCollection = storeDatabase[storeLocation]
 @app.route('/head_turns_last_day')
 def head_turns_last_day():
     results = storeCollection.find()
-    timestampHourBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
+    timestampDayBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
     faces = set()
 
     for result in results:
         timestamp = result['Timestamp']
-        if timestamp > timestampHourBack:
+        if timestamp > timestampDayBack:
             if 'Face' in result['Person']:
                 faces.add(result['Person']['Index'])
 
@@ -42,21 +43,60 @@ def head_turns_last_day():
 @app.route('/foot_traffic_last_day')
 def foot_traffic_last_day():
     results = storeCollection.find()
-    timestampHourBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
+    timestampDayBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
     persons = set()
 
     for result in results:
         timestamp = result['Timestamp']
-        if timestamp > timestampHourBack:
+        if timestamp > timestampDayBack:
             persons.add(result['Person']['Index'])
 
     return str(len(persons))
 
+
+@app.route('/general_sentiment_last_day')
+def general_sentiment_last_day():
+    results = storeCollection.find()
+    timestampDayBack = (datetime.utcnow() - timedelta(hours=24)).timestamp() * 1000
+    sentiment_count = defaultdict(int)
+
+    for result in results:
+        timestamp = result['Timestamp']
+        if timestamp > timestampDayBack:
+            if 'Face' in result['Person']:
+                most_likely_mood = max(result['Person']['Face']['Emotions'], key=lambda x: x['Confidence'])['Type']
+                sentiment_count[most_likely_mood] += 1
+
+    return max(sentiment_count.keys(), key=(lambda key: sentiment_count[key]))
+
+
 @app.route('/analytics')
 def analytics():
-    startTimestamp = int(request.args.get('start'))
+    startTimestamp = request.args.get('start')
+    if startTimestamp is None:
+        startTimestamp = 0
+    else:
+        startTimestamp = int(startTimestamp)
+
+    return analyzeFromTime(startTimestamp)
+
+
+def analyzeFromTime(startTimestamp):
     results = storeCollection.find()
-    timestamp_face_count_dict, timestamp_person_count_dict, timestamp_male_count_dict, timestamp_female_count_dict, timestamp_youth_count_dict, timestamp_adult_count_dict, timestamp_seniors_count_dict, timestamp_happy_count_dict, timestamp_calm_count_dict, timestamp_disgusted_count_dict,timestamp_confused_count_dict, timestamp_surprised_count_dict, timestamp_sad_count_dict, timestamp_angry_count_dict  = [defaultdict(int)] * 14
+    timestamp_face_count_dict = defaultdict(int)
+    timestamp_person_count_dict = defaultdict(int)
+    timestamp_male_count_dict = defaultdict(int)
+    timestamp_female_count_dict = defaultdict(int)
+    timestamp_youth_count_dict = defaultdict(int)
+    timestamp_adult_count_dict = defaultdict(int)
+    timestamp_seniors_count_dict = defaultdict(int)
+    timestamp_happy_count_dict = defaultdict(int)
+    timestamp_calm_count_dict = defaultdict(int)
+    timestamp_disgusted_count_dict = defaultdict(int)
+    timestamp_confused_count_dict = defaultdict(int)
+    timestamp_surprised_count_dict = defaultdict(int)
+    timestamp_sad_count_dict = defaultdict(int)
+    timestamp_angry_count_dict = defaultdict(int)
 
     for result in results:
         timestamp = result['Timestamp']
@@ -69,26 +109,25 @@ def analytics():
                 # Male count
                 if result['Person']['Face']['Gender']['Value'] == 'Male' and result['Person']['Face']['Gender']['Confidence'] >= 75:
                     timestamp_male_count_dict[timestamp] += 1
-                
+
                 # Female count
                 if result['Person']['Face']['Gender']['Value'] == 'Female' and result['Person']['Face']['Gender']['Confidence'] >= 75:
-                    timestamp_female_count_dict[timestamp] += 1 
-                    
-                
+                    timestamp_female_count_dict[timestamp] += 1
+
                 avg_age = (result['Person']['Face']['AgeRange']['Low'] + result['Person']['Face']['AgeRange']['High']) / 2
-                
+
                 # Youth count
                 if avg_age >= 0 and avg_age < 18:
-                    timestamp_youth_count_dict[timestamp] += 1 
+                    timestamp_youth_count_dict[timestamp] += 1
                 # Adult count
                 elif avg_age >= 18 and avg_age < 60:
                     timestamp_adult_count_dict[timestamp] += 1
                 # Seniors count
                 else:
-                    timestamp_seniors_count_dict[timestamp] += 1 
-                    
+                    timestamp_seniors_count_dict[timestamp] += 1
+
                 # most likely mood count
-                most_likely_mood = max(result['Person']['Face']['Emotions'], key=lambda x:x['Confidence'])['Type']
+                most_likely_mood = max(result['Person']['Face']['Emotions'], key=lambda x: x['Confidence'])['Type']
                 if most_likely_mood == 'HAPPY':
                     timestamp_happy_count_dict[timestamp] += 1
                 elif most_likely_mood == 'CALM':
@@ -103,20 +142,49 @@ def analytics():
                     timestamp_sad_count_dict[timestamp] += 1
                 else:
                     timestamp_angry_count_dict[timestamp] += 1
-                    
+
             else:
-                timestamp_face_count_dict[timestamp], timestamp_person_count_dict[timestamp], timestamp_male_count_dict[timestamp], timestamp_female_count_dict[timestamp], timestamp_youth_count_dict[timestamp], timestamp_adult_count_dict[timestamp], timestamp_seniors_count_dict[timestamp], timestamp_happy_count_dict[timestamp], timestamp_calm_count_dict[timestamp], timestamp_disgusted_count_dict[timestamp],timestamp_confused_count_dict[timestamp], timestamp_surprised_count_dict[timestamp], timestamp_sad_count_dict[timestamp], timestamp_angry_count_dict[timestamp]  = [0] * 14
+                timestamp_face_count_dict[timestamp] = 0
+                timestamp_person_count_dict[timestamp] = 0
+                timestamp_male_count_dict[timestamp] = 0
+                timestamp_female_count_dict[timestamp] = 0
+                timestamp_youth_count_dict[timestamp] = 0
+                timestamp_adult_count_dict[timestamp] = 0
+                timestamp_seniors_count_dict[timestamp] = 0
+                timestamp_happy_count_dict[timestamp] = 0
+                timestamp_calm_count_dict[timestamp] = 0
+                timestamp_disgusted_count_dict[timestamp] = 0
+                timestamp_confused_count_dict[timestamp] = 0
+                timestamp_surprised_count_dict[timestamp] = 0
+                timestamp_sad_count_dict[timestamp] = 0
+                timestamp_angry_count_dict[timestamp] = 0
 
-    count_dicts = [timestamp_face_count_dict, timestamp_person_count_dict, timestamp_male_count_dict, timestamp_female_count_dict, timestamp_youth_count_dict, timestamp_adult_count_dict, timestamp_seniors_count_dict, timestamp_happy_count_dict, timestamp_calm_count_dict, timestamp_disgusted_count_dict,timestamp_confused_count_dict, timestamp_surprised_count_dict, timestamp_sad_count_dict, timestamp_angry_count_dict]
+    count_dicts = {
+        "foot_traffic": timestamp_person_count_dict,
+        "head_turns": timestamp_face_count_dict,
+        "male_head_turns": timestamp_male_count_dict,
+        "female_head_turns": timestamp_female_count_dict,
+        "youth_head_turns": timestamp_youth_count_dict,
+        "adult_head_turns": timestamp_adult_count_dict,
+        "seniors_head_turns": timestamp_seniors_count_dict,
+        "happy_head_turns": timestamp_happy_count_dict,
+        "calm_head_turns": timestamp_calm_count_dict,
+        "disgusted_head_turns": timestamp_disgusted_count_dict,
+        "confused_head_turns": timestamp_confused_count_dict,
+        "surprised_head_turns": timestamp_surprised_count_dict,
+        "sad_head_turns": timestamp_sad_count_dict,
+        "angry_head_turns": timestamp_angry_count_dict
+    }
 
-    return count_dicts
+    return json.dumps(count_dicts)
 
 @app.route('/')
 def index():
     return render_template(
         'dashboard.html',
         foot_traffic=int(foot_traffic_last_day()),
-        head_turns=head_turns_last_day())
+        head_turns=int(head_turns_last_day()),
+        general_sentiment=general_sentiment_last_day())
 
 @app.route('/dashboard')
 def dashboard():

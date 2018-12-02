@@ -24,10 +24,9 @@
     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
     <link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
     <link href="{{ url_for('static', filename='css/themify-icons.css') }}" rel="stylesheet">
-
 </head>
 
-<body>
+<body onload="update_dashboards()">
 
     <div class="wrapper">
         <div class="sidebar" data-background-color="white" data-active-color="danger">
@@ -141,7 +140,7 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-7">
-                                            <div class="numbers" id="foot-traffic">
+                                            <div class="numbers" id="foot_traffic">
                                                 <p>Foot traffic</p>
                                                 {{foot_traffic}}
                                             </div>
@@ -167,7 +166,7 @@
                                         </div>
                                         <div class="col-xs-7">
                                             <div class="numbers" id="head_turns">
-                                                <p>Head Turns</p>
+                                                <p>Head turns</p>
                                                 {{head_turns}}
                                             </div>
                                         </div>
@@ -191,9 +190,9 @@
                                             </div>
                                         </div>
                                         <div class="col-xs-7">
-                                            <div class="numbers">
-                                                <p>General Sentiment</p>
-                                                Happy
+                                            <div class="numbers" id="general_sentiment">
+                                                <p>General sentiment</p>
+                                                {{general_sentiment}}
                                             </div>
                                         </div>
                                     </div>
@@ -289,6 +288,12 @@
 
                 </div>
             </div>
+
+            <div id="foot_traffic_dashboard"></div>
+            <div id="head_turns_dashboard"></div>
+            <div id="gender_head_turns_dashboard"></div>
+            <div id="age_head_turns_dashboard"></div>
+            <div id="emotion_head_turns_dashboard"></div>
         </div>
 
 
@@ -318,8 +323,9 @@
 </body>
 
 <!--   Core JS Files   -->
-<script src="{{ url_for('static', filename='js/jquery.min.js') }}" type="text/javascript"></script>
-<script src="{{ url_for('static', filename='js/bootstrap.min.js') }}" type="text/javascript"></script>
+<script src="assets/js/jquery.min.js" type="text/javascript"></script>
+<script src="assets/js/bootstrap.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
 
 <!--  Checkbox, Radio & Switch Plugins -->
 <script src="{{ url_for('static', filename='js/bootstrap-checkbox-radio.js') }}"></script>
@@ -335,5 +341,13 @@
 
 <!-- Paper Dashboard Core javascript and methods for Demo purpose -->
 <script src="{{ url_for('static', filename='js/paper-dashboard.js') }}"></script>
+<script src="assets/js/paper-dashboard.js"></script>
+
+<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+<script src="assets/js/demo.js"></script>
+
+<!-- Plotly.js -->
+<script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+<script src="{{ url_for('static', filename='dashboard.js') }}"></script>
 
 </html>
